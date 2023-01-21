@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tab_base/home_navigation_rail.dart';
 import 'package:go_router/go_router.dart';
-import 'router/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,19 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: router,
+      routerConfig: PageRouter.router,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,37 +26,28 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '遷移のサンプル',
-            ),
             ElevatedButton(
               child: const Text('一覧へ'),
               onPressed: () {
-                context.go('/home/list');
+                context.go('/home');
               },
             ),
             ElevatedButton(
-              child: const Text('pushで詳細へ'),
+              child: const Text('詳細へ'),
               onPressed: () {
-                context.push('/home/list/detail');
-              },
-            ),
-            ElevatedButton(
-              child: const Text('goで詳細へ'),
-              onPressed: () {
-                context.go('/home/list/detail');
+                context.go('/home/detail');
               },
             ),
             ElevatedButton(
               child: const Text('記事一覧へ'),
               onPressed: () {
-                context.go('/article/list');
+                context.go('/article/');
               },
             ),
             ElevatedButton(
               child: const Text('記事詳細へ'),
               onPressed: () {
-                context.go('/article/list/detail');
+                context.go('/article/detail');
               },
             ),
             ElevatedButton(
