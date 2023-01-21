@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tab_base/home_navigation_rail.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_tab_base/page_router.dart';
 
 void main() {
   runApp(const MyApp());
