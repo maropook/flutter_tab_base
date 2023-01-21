@@ -15,7 +15,7 @@ class HomeNavigationRail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           NavigationRail(
-              trailing: ElevatedButton(
+              leading: ElevatedButton(
                 onPressed: (() async {
                   context.go('/login');
                 }),
@@ -23,47 +23,30 @@ class HomeNavigationRail extends StatelessWidget {
                   "ログアウト",
                 ),
               ),
-              backgroundColor: Colors.black,
-              extended: true,
-              destinations: [
+              backgroundColor: Color.fromARGB(255, 194, 227, 255),
+              destinations: const [
                 NavigationRailDestination(
-                  icon: Container(),
-                  label: const Text(
-                    "ダッシュボード",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  icon: Icon(Icons.home),
+                  label: Text(
+                    "ホーム",
                   ),
                 ),
                 NavigationRailDestination(
-                  icon: Container(),
-                  label: const Text(
-                    "アーティスト一覧",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  icon: Icon(Icons.article),
+                  label: Text(
+                    "記事一覧",
                   ),
                 ),
                 NavigationRailDestination(
-                  icon: Container(),
-                  label: const Text(
+                  icon: Icon(Icons.face),
+                  label: Text(
                     "ユーザー一覧",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
                   ),
                 ),
                 NavigationRailDestination(
-                  icon: Container(),
-                  label: const Text(
-                    "現在の設定",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  icon: Icon(Icons.settings),
+                  label: Text(
+                    "設定",
                   ),
                 ),
               ],
@@ -83,7 +66,7 @@ class HomeNavigationRail extends StatelessWidget {
 
   static int calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
-    if (location.startsWith('/home/artist')) {
+    if (location.startsWith('/home/article')) {
       return 1;
     }
     if (location.startsWith('/home/user')) {
@@ -102,7 +85,7 @@ class HomeNavigationRail extends StatelessWidget {
         GoRouter.of(context).go('/');
         break;
       case 1:
-        GoRouter.of(context).go('/home/artist');
+        GoRouter.of(context).go('/home/article');
         break;
       case 2:
         GoRouter.of(context).go('/home/user');
@@ -130,11 +113,11 @@ class PageRouter {
       routes: <RouteBase>[
         GoRoute(
           path: '/',
-          builder: (context, state) => const DashBoard(),
+          builder: (context, state) => const HomePage(),
           routes: <RouteBase>[
             GoRoute(
-                path: 'home/artist',
-                builder: (context, state) => const ArtistPage()),
+                path: 'home/article',
+                builder: (context, state) => const ArticlePage()),
             GoRoute(
                 path: 'home/user',
                 builder: (context, state) => const UserPage()),
@@ -154,15 +137,12 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ログイン'),
-      ),
       body: Center(
           child: ElevatedButton(
               onPressed: () {
                 context.go('/');
               },
-              child: const Text('login'))),
+              child: const Text('ログイン'))),
     );
   }
 }
@@ -172,42 +152,33 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('ユーザー'),
-      ),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text('ユーザー'),
       ),
     );
   }
 }
 
-class ArtistPage extends StatelessWidget {
-  const ArtistPage({super.key});
+class ArticlePage extends StatelessWidget {
+  const ArticlePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('アーティスト'),
-      ),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text('アーティスト'),
       ),
     );
   }
 }
 
-class DashBoard extends StatelessWidget {
-  const DashBoard({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('ダッシュボード'),
-      ),
+    return const Scaffold(
       body: Center(
         child: Text('ダッシュボード'),
       ),
@@ -220,11 +191,8 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('設定'),
-      ),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text('設定'),
       ),
     );
